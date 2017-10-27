@@ -10,7 +10,6 @@
 <h2>{{trans('app.test',['name'=>'Miguel'])}}</h2>
 <div class="row">
   <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-
     @foreach($articles as $article)
         <div class="post">
     			<div class="post-media post-image">
@@ -21,7 +20,6 @@
     					<span class="day">{{$article->created_at->diffForHumans()}}<br></span>
     				</div>
     			</div>
-
     			<div class="post-body">
     				<div class="entry-header">
     					<h2 class="entry-title">
@@ -29,12 +27,10 @@
     					</h2>
     					 <div class="post-meta">
     						<span class="post-author">
-    							<i class="fa fa-user"></i><a href="#"> Admin</a>
+    							<i class="fa fa-user"></i><a href="#"> Author name</a>
        					</span>
-    						<span class="post-cat">
-    							<i class="fa fa-folder-open"></i><a href="#"> News</a>
-       					</span>
-    						<span class="post-comment"><i class="fa fa-comment-o"></i> 02<a href="{{route('front.view.article',$article->slug)}}" class="comments-link">Comments</a></span>
+
+
     					</div>
     				 </div><!-- header end -->
 

@@ -7,13 +7,13 @@
                   <li>
                       <div class="posts-thumb pull-left">
                         @foreach($article->images as $image)
-                          <a href="#"><img alt="{{ $article->title }}" src="{{asset('images/articles/'.$image->name)}}"></a>
+                          <a href="{{route('front.view.article',$article->slug)}}"><img alt="{{ $article->title }}" src="{{asset('images/articles/'.$image->name)}}"></a>
                         @endforeach
 
                       </div>
                       <div class="post-info">
                           <h4 class="entry-title">
-                            <a href="#">{{ $article->title }}</a>
+                            <a href="{{route('front.view.article',$article->slug)}}">{{ $article->title }}</a>
                           </h4>
                       </div>
                       <div class="clearfix"></div>

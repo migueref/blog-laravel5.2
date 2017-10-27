@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Category;
 use App\Tag;
 use App\Article;
 use Carbon\Carbon;
+
 class FrontController extends Controller
 {
     public function __construct() {

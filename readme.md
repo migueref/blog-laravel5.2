@@ -1,8 +1,10 @@
-# Laravel PHP Framework
-This is a blog built with Laravel 5.2, you just need migrate to create tables in 'blog' database:
-	php artisan migrate
-	
-## Connect with me 
+# Cyberdreams blog built with laravel
+This is a great blog site repository, to install you just need execute the migrations to create tables in 'blog' database using the following command:
+		php artisan migrate
+This repository was built with the following technologies:
+	  - Laravel 5.2
+	  - Bootstrap
 
-Linkedin (https://www.linkedin.com/in/migueref).	
-	
+## Connect with me
+
+Linkedin (https://www.linkedin.com/in/migueref).
