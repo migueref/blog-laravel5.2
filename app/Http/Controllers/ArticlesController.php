@@ -21,12 +21,11 @@ class ArticlesController extends Controller
     {
 
         $articles=Article::search($request->title)->orderBy('id', 'DESC')->paginate(5);
-		$articles->each(function($articles){
-			$articles->category;
-			$articles->user;
-
-		} );
-		return view('admin.articles.index')->with('articles',$articles);
+		    $articles->each(function($articles){
+  			  $articles->category;
+  			  $articles->user;
+		    });
+		    return view('admin.articles.index')->with('articles',$articles);
     }
 
     /**
@@ -38,12 +37,11 @@ class ArticlesController extends Controller
     {
 	   $categories = Category::orderBy('name','ASC')->lists('name','id');
 	    $tags = Tag::orderBy('name','ASC')->lists('name','id');
-	  // dd($categories);
-	  // $tags	= 	Tag::orderBy('name','ASC')->get();
-
+  	  // dd($categories);
+  	  // $tags	= 	Tag::orderBy('name','ASC')->get();
        return view('admin.articles.create')
-				->with('categories',$categories)
-				->with('tags',$tags);
+          				->with('categories',$categories)
+          				->with('tags',$tags);
     }
 
     /**
@@ -54,24 +52,24 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-		//dd($request->input('tags'));
-		if($request->file('image')){
-			 $file = $request->file('image');
-			$name = 	'cyberdreams_'.time().'.'.$file->getClientOriginalExtension();
-			$path = public_path().'/images/articles/';
-			$file->move($path,$name);
+  		//dd($request->input('tags'));
+  		if($request->file('image')){
+  			 $file = $request->file('image');
+  			$name = 	'cyberdreams_'.time().'.'.$file->getClientOriginalExtension();
+  			$path = public_path().'/images/articles/';
+  			$file->move($path,$name);
 
-		}
-		$article = new Article($request->all());
-		$article->user_id =\Auth::user()->id;
-		$article->save();
-		 $article->tags()->sync($request->input('tags'));
-		$image = new Image();
-		$image->name = $name;
-		$image->article()->associate($article);
-		$image->save();
-		flash('Se ha registrado el artículo '.$article->title.' de forma exitosa', 'success');
-		return redirect()->route('admin.articles.index');
+  		}
+  		$article = new Article($request->all());
+  		$article->user_id =\Auth::user()->id;
+  		$article->save();
+  		 $article->tags()->sync($request->input('tags'));
+  		$image = new Image();
+  		$image->name = $name;
+  		$image->article()->associate($article);
+  		$image->save();
+  		flash('Se ha registrado el artículo '.$article->title.' de forma exitosa', 'success');
+  		return redirect()->route('admin.articles.index');
     }
 
     /**

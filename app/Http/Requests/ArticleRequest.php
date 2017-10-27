@@ -25,9 +25,9 @@ class ArticleRequest extends Request
     {
         return [
             'title' => 'min:10|max:250|required|unique:articles',
-			'category_id' => 'required',
-			'content'	=>	'min:60|required',
-			'image'		=>	'size:500|image|required'
+      			'category_id' => 'required',
+      			'content'	=>	'min:2|required',
+      			'image'		=>	'between:1,500|image|required'
         ];
     }
 }

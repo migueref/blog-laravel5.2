@@ -12,22 +12,21 @@ use App\Article;
 use Carbon\Carbon;
 class FrontController extends Controller
 {
-    public function __construct(){
+    public function __construct() {
         Carbon::setLocale('es');
     }
-    public function index()
-    {
+
+    public function index() {
         $articles = Article::orderBy('id','DESC')->paginate(4);
         $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
     			$articles->category;//llamamos al método para traer la categoría
           $articles->images;
     			$articles->user;
     		});
-
-        return view('front.index')
-                    ->with('articles',$articles);
+        return view('front.index')->with('articles',$articles);
     }
-    public function searchCategory($name){
+
+    public function searchCategory($name) {
         $category = Category::SearchCategory($name);
         $articles = $category->articles()->paginate(4);
         $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
@@ -38,7 +37,8 @@ class FrontController extends Controller
         return view ('front.index')
                     ->with('articles',$articles);
     }
-    public function searchTag($name){
+
+    public function searchTag($name) {
         $tag=Tag::SearchTag($name);
         $articles = $tag->articles()->paginate(4);
         $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
@@ -46,17 +46,25 @@ class FrontController extends Controller
           $articles->images;
           $articles->user;
         });
-        return view ('front.index')
-                    ->with('articles',$articles);
+        return view ('front.index')->with('articles',$articles);
     }
-    public function viewArticle($slug){
+
+    public function viewArticle($slug) {
       $article = Article::findBySlugOrFail($slug);
       $article->category;
       $article->user;
       $article->tags;
       $article->images;
-      return view('front.article')->with('article',$article);
+      //get all articles to show them in aside
+      $articles = Article::orderBy('id','DESC')->paginate(4);
+      $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
+        $articles->category;//llamamos al método para traer la categoría
+        $articles->images;
+        $articles->user;
+      });
+      return view('front.article')->with([
+                                          'article'=>$article,
+                                          'articles'=>$articles
+                                        ]);
     }
-
-
 }

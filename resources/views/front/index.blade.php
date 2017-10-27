@@ -9,34 +9,50 @@
 </h1>
 <h2>{{trans('app.test',['name'=>'Miguel'])}}</h2>
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 
-
-  @foreach($articles as $article)
-  <div class="col-sm-6 col-xs-12">
-    <div class="panel panel-default">
-        <div class="panel-body">
-          <a href="{{route('front.view.article',$article->slug)}}" class"thumbnail">
+    @foreach($articles as $article)
+        <div class="post">
+    			<div class="post-media post-image">
             @foreach($article->images as $image)
-              <img src="{{asset('images/articles/'.$image->name)}}" style="width:400px;height:400px;"class="img-responsive img-article" alt="" />
+              <img src="{{asset('images/articles/'.$image->name)}}" class="img-responsive" alt="" />
             @endforeach
+    				<div class="post-meta-date" style="padding:15px!important;">
+    					<span class="day">{{$article->created_at->diffForHumans()}}<br></span>
+    				</div>
+    			</div>
 
-          </a>
-            <a href="{{route('front.view.article',$article->slug)}}" ><h3 class="text-center">{{$article->title}}</h3></a>
-          <hr>
-          <i class="fa fa-folder-open-o"></i><a href="{{route('front.search.category',$article->category->name)}}">{{$article->category->name}}</a>
-          <div class="pull-right">
-            <i class="fa fa-clock-o"></i>{{$article->created_at->diffForHumans()}}
-          </div>
-        </div>
+    			<div class="post-body">
+    				<div class="entry-header">
+    					<h2 class="entry-title">
+    						<a href="{{route('front.view.article',$article->slug)}}">{{$article->title}}</a>
+    					</h2>
+    					 <div class="post-meta">
+    						<span class="post-author">
+    							<i class="fa fa-user"></i><a href="#"> Admin</a>
+       					</span>
+    						<span class="post-cat">
+    							<i class="fa fa-folder-open"></i><a href="#"> News</a>
+       					</span>
+    						<span class="post-comment"><i class="fa fa-comment-o"></i> 02<a href="{{route('front.view.article',$article->slug)}}" class="comments-link">Comments</a></span>
+    					</div>
+    				 </div><!-- header end -->
+
+    				 <div class="entry-content">
+    					     <p>{!!  str_limit($article->content, 1000 )!!}</p>
+    				 </div>
+    				 <div class="post-footer">
+    					<a href="{{route('front.view.article',$article->slug)}}" class="btn btn-primary">Continue Reading</a>
+    				 </div>
+
+    			</div><!-- post-body end -->
+    		</div><!-- 1st post end -->
+      @endforeach
     </div>
-  </div>
-  @endforeach
-  </div>
-  <div class="col-sm-4 col-xs-12 aside">
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
       @include('front.template.partials.aside')
   </div>
 </div>
 
-	{!! $articles->render() !!}
+{!! $articles->render() !!}
 @endsection
