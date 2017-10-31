@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Category;
@@ -17,10 +18,10 @@ class FrontController extends Controller
     public function index() {
         $articles = Article::orderBy('id','DESC')->paginate(4);
         $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
-    			$articles->category;//llamamos al método para traer la categoría
-          $articles->images;
-    			$articles->user;
-    		});
+    		$articles->category;//llamamos al método para traer la categoría
+        	$articles->images;
+    		$articles->user;
+    	});
         return view('front.index')->with('articles',$articles);
     }
 
@@ -28,21 +29,21 @@ class FrontController extends Controller
         $category = Category::SearchCategory($name);
         $articles = $category->articles()->paginate(4);
         $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
-    			$articles->category;//llamamos al método para traer la categoría
-          $articles->images;
-    			$articles->user;
-    		});
+    		$articles->category;//llamamos al método para traer la categoría
+        	$articles->images;
+    		$articles->user;
+    	});
         return view ('front.index')
-                    ->with('articles',$articles);
+            	->with('articles',$articles);
     }
 
     public function searchTag($name) {
         $tag=Tag::SearchTag($name);
         $articles = $tag->articles()->paginate(4);
         $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
-          $articles->category;//llamamos al método para traer la categoría
-          $articles->images;
-          $articles->user;
+        	$articles->category;//llamamos al método para traer la categoría
+        	$articles->images;
+        	$articles->user;
         });
         return view ('front.index')->with('articles',$articles);
     }
@@ -56,13 +57,13 @@ class FrontController extends Controller
       //get all articles to show them in aside
       $articles = Article::orderBy('id','DESC')->paginate(4);
       $articles->each(function($articles){ //usamos este each porque se tiene que hacer el recorrido de todas las categorías que tiene un artículo
-        $articles->category;//llamamos al método para traer la categoría
-        $articles->images;
-        $articles->user;
+		  $articles->category;//llamamos al método para traer la categoría
+		  $articles->images;
+		  $articles->user;
       });
       return view('front.article')->with([
-                                          'article'=>$article,
-                                          'articles'=>$articles
-                                        ]);
+             	'article'=>$article,
+                'articles'=>$articles
+            ]);
     }
 }

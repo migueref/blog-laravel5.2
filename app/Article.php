@@ -8,7 +8,6 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Article extends Model
 {
-
     use Sluggable;
 
     public function sluggable()
@@ -47,12 +46,12 @@ class Article extends Model
 		//dd($title);
 		return $query->where('title','LIKE',"%$title%");
 	}
-  public static function findBySlugOrFail($slug, $columns = array('*') )
-   {
-       if ( ! is_null($slug = static::whereSlug($slug)->first($columns))) {
+  	public static function findBySlugOrFail($slug, $columns = array('*') )
+   	{
+       if (! is_null($slug = static::whereSlug($slug)->first($columns))) {
            return $slug;
        }
 
        throw new ModelNotFoundException;
-   }
+   	}
 }

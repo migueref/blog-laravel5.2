@@ -9,13 +9,16 @@ class Tag extends Model
     protected $table= 'tags';
 	protected $fillable = ['name'];
 
-	 public function articles(){
+	public function articles()
+	{
         return $this->belongsToMany('App\Article')->withTimestamps();
     }
-	public function scopeSearch($query,$name){
+	public function scopeSearch($query,$name) 
+	{
 		return $query->where('name','LIKE',"%$name%");
 	}
-  public function scopeSearchTag($query,$name){
+	public function scopeSearchTag($query,$name)
+	{
 		return $query->where('name','=',"$name")->first();
 	}
 }

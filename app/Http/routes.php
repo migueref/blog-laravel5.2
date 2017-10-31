@@ -43,37 +43,36 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
 				'as' => 'admin.users.destroy'
 			 ]);
 	});
-
-	 Route::resource('categories','CategoriesController');
-	 Route::get('categories/{id}/destroy',[
+	Route::resource('categories','CategoriesController');
+	Route::get('categories/{id}/destroy',[
 		'uses' => 'CategoriesController@destroy',
 		'as' => 'admin.categories.destroy'
-	 ]);
+	]);
 	Route::resource('tags','TagsController');
-	 Route::get('tags/{id}/destroy',[
+	Route::get('tags/{id}/destroy',[
 		'uses' => 'TagsController@destroy',
 		'as' => 'admin.tags.destroy'
-	 ]);
+	]);
 	Route::resource('articles','ArticlesController');
-	 Route::get('articles/{id}/destroy',[
+	Route::get('articles/{id}/destroy',[
 		'uses' => 'ArticlesController@destroy',
 		'as' => 'admin.articles.destroy'
-	 ]);
+	]);
    Route::get('images',[
        'uses'  =>  'ImagesController@index',
        'as'    =>  'admin.images.index'
    ]);
 });
 
- Route::get('admin/auth/login',[
+Route::get('admin/auth/login',[
 		'uses' => 'Auth\AuthController@getLogin',
 		'as' => 'admin.auth.login'
-	 ]);
- Route::post('admin/auth/login', [
+]);
+Route::post('admin/auth/login', [
 				'uses' =>	'Auth\AuthController@postLogin',
 				'as'   =>	'admin.auth.login'
-			]);
+]);
 Route::get('admin/auth/logout',[
 		'uses' => 'Auth\AuthController@getLogout',
 		'as' => 'admin.auth.logout'
-	 ]);
+]);

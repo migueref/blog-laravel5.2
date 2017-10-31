@@ -4,7 +4,7 @@
 				<div class="navbar-header">
 					<div class="logo">
 	                <a href="index.html">
-	                	<img src="{{ asset('template/images/logo.png') }}" alt="">
+	                	<img src="https://www.cife.edu.mx/ksql/public/journals/1/pageHeaderLogoImage_es_ES.png" alt="">
 	                </a>
          		</div><!-- logo end -->
 				</div><!-- Navbar header end -->
@@ -17,10 +17,10 @@
 	    			</button>
 	    			<nav class="collapse navbar-collapse navbar-responsive-collapse pull-right">
 	    				<ul class="nav navbar-nav">
-								<li class="dropdown">
-		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
-								</li>
-		          </ul><!--/ Nav ul end -->
+							<li class="dropdown">
+		            			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
+							</li>
+		          		</ul><!--/ Nav ul end -->
 	    			</nav><!--/ Collapse end -->
 				</div><!-- Site nav inner end -->
 			</div><!-- Row end -->

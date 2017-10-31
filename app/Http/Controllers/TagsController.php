@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\TagRequest;
 use App\Tag;
 use Laracast\Flash\Flash;
+
 class TagsController extends Controller
 {
     /**
@@ -16,8 +16,8 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {	
-		
+    {
+
        $tags=Tag::search($request->name)->orderBy('id', 'DESC')->paginate(10);
 		return view('admin.tags.index')->with('tags',$tags);
     }
@@ -77,13 +77,13 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      */
      public function update(Request $request, $id)
-    {
+     {
 		$tags = Tag::find($id);
 		$tags->fill($request->all());
-		$tags->save();		
+		$tags->save();
 		flash('Se ha modificado el tag:  '.$tags->name.' De forma exitosa', 'success');
 		return redirect()->route('admin.tags.index');
-    }
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -93,8 +93,8 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-       $tag = Tag::find($id);
-	   $tag->delete();
+    	$tag = Tag::find($id);
+		$tag->delete();
 		flash('Se ha eliminado '.$tag->name.' De forma exitosa', 'danger');
 		return redirect()->route('admin.tags.index');
     }

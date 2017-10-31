@@ -7,7 +7,7 @@
 <h1>
 {{trans('app.title_last_articles')}}
 </h1>
-<h2>{{trans('app.test',['name'=>'Miguel'])}}</h2>
+
 <div class="row">
   <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
     @foreach($articles as $article)
@@ -27,7 +27,7 @@
     					</h2>
     					 <div class="post-meta">
     						<span class="post-author">
-    							<i class="fa fa-user"></i><a href="#"> Author name</a>
+    							<i class="fa fa-user"></i><a href="#"> {{$article->user->name}}</a>
        					</span>
 
 

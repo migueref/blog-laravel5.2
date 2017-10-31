@@ -36,13 +36,13 @@
 			placeholder_text_multiple: 'Seleccione máximo tres tags',
 			max_selected_options:3,
 			no_results_text:'No se encontraron tags'
-		} );
+		});
 		$('.select-category').chosen({
 
-		} );
+		});
 		$('.textarea-content').trumbowyg({
 
-		} );
+		});
 
 	</script>
 @endsection

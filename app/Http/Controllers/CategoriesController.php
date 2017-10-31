@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\CategoryRequest;
 use App\Category;
 use Laracast\Flash\Flash;
+
 class CategoriesController extends Controller
 {
     /**
@@ -78,7 +79,7 @@ class CategoriesController extends Controller
     {
 		$categories = Category::find($id);
 		$categories->fill($request->all());
-		$categories->save();		
+		$categories->save();
 		flash('Se ha modificado la categoría:  '.$categories->name.' De forma exitosa', 'warning');
 		return redirect()->route('admin.categories.index');
     }

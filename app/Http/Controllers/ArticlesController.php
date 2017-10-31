@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Category;
 use App\Tag;
 use App\Article;
 use App\Image;
 use App\Http\Requests\ArticleRequest;
+
 class ArticlesController extends Controller
 {
     /**
@@ -54,16 +54,16 @@ class ArticlesController extends Controller
     {
   		//dd($request->input('tags'));
   		if($request->file('image')){
-  			 $file = $request->file('image');
-  			$name = 	'cyberdreams_'.time().'.'.$file->getClientOriginalExtension();
-  			$path = public_path().'/images/articles/';
-  			$file->move($path,$name);
-
+  			  $file = $request->file('image');
+    			$name = 	'cyberdreams_'.time().'.'.$file->getClientOriginalExtension();
+    			$path = public_path().'/images/articles/';
+    			$file->move($path,$name);
   		}
+
   		$article = new Article($request->all());
   		$article->user_id =\Auth::user()->id;
   		$article->save();
-  		 $article->tags()->sync($request->input('tags'));
+  		$article->tags()->sync($request->input('tags'));
   		$image = new Image();
   		$image->name = $name;
   		$image->article()->associate($article);
